@@ -1,0 +1,30 @@
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
+
+driver = webdriver.Chrome(executable_path="C:\\browserdrivers\\chromedriver.exe")
+driver.maximize_window()
+driver.get("http://localhost/OnlineJobPortal/System/")
+time.sleep(2)
+driver.find_element(By.XPATH, "//a[normalize-space()='login']").click()
+driver.find_element(By.NAME, 'email').clear()
+driver.find_element(By.NAME, 'email').send_keys('admin@gmail.com')
+driver.find_element(By.NAME, 'password').clear()
+driver.find_element(By.NAME, 'password').send_keys('12345678')
+time.sleep(1)
+driver.find_element(By.XPATH, "//button[normalize-space()='Login']").click()
+driver.find_element(By.XPATH, "//a[normalize-space()='Post a Job']").click()
+time.sleep(1)
+driver.find_element(By.NAME, "title").send_keys("Accounts Officer")
+driver.find_element(By.NAME, "city").send_keys("Dhaka")
+driver.find_element(By.NAME, 'deadline').send_keys('30/12/22')
+driver.find_element(By.NAME, "//span[@class='filter-option pull-left'][normalize-space()='Bangladesh']")
+driver.find_element(By.XPATH, "//span[@class='filter-option pull-left'][normalize-space()='IT and Telecoms']")
+selectExpType = driver.find_element(By.XPATH, "//div[contains(@class,'dropdown-backdrop')]")
+selectExpTypeFinal = Select(selectExpType)
+selectExpTypeFinal.select_by_index(1)
+driver.find_element(By.CLASS_NAME, "form-control bootstrap3-wysihtml5 wysihtml5-editor placeholder").send_keys("This is a job for an Accounts officer")
+driver.find_element(By.CLASS_NAME, "form-control bootstrap3-wysihtml5 wysihtml5-editor placeholder").send_keys("Some Responsibilities")
+driver.find_element(By.CLASS_NAME, "form-control bootstrap3-wysihtml5 wysihtml5-editor placeholder").send_keys("Some Job Responsibilities")
+driver.find_element(By.XPATH, "//button[normalize-space()='Post Your Job']").click()
